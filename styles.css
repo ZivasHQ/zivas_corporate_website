@@ -182,6 +182,13 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
+/* Below 360px there still isn't room for logo + toggle + CTA + hamburger on
+   one row — drop the CTA from the nav bar itself. It stays reachable via the
+   hero section and the mobile menu below. */
+@media (max-width: 360px) {
+  .nav-actions .btn-primary { display: none; }
+}
+
 .mobile-nav-menu {
   display: flex;
   flex-direction: column;
@@ -192,6 +199,12 @@ a { color: inherit; text-decoration: none; }
 }
 .mobile-nav-menu a { padding: 12px 4px; color: var(--ink-soft); }
 .mobile-nav-menu a:hover { color: var(--ink); }
+.mobile-nav-menu .mobile-nav-cta {
+  color: #fff;
+  justify-content: center;
+  margin-top: 8px;
+  padding: 13px 22px;
+}
 .mobile-nav-menu.hidden { display: none; }
 @media (min-width: 860px) {
   .mobile-nav-menu { display: none !important; }
@@ -251,6 +264,11 @@ a { color: inherit; text-decoration: none; }
 /* ---------- Feature grid ---------- */
 .grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 48px; }
 @media (min-width: 700px) { .grid.cols-2 { grid-template-columns: 1fr 1fr; } }
+/* Tablet step: 3- and 4-up grids go to 2 columns before jumping to their full
+   column count, so iPad-ish widths don't sit at a single column. */
+@media (min-width: 600px) and (max-width: 899px) {
+  .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr 1fr; }
+}
 @media (min-width: 900px) { .grid.cols-3 { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 900px) { .grid.cols-4 { grid-template-columns: repeat(4, 1fr); } }
 
@@ -304,6 +322,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---------- Team ---------- */
+/* Team and Contact headings/subtext are centered (see inline styles on the
+   h2/p in index.html), but the eyebrow label above them was left stuck on
+   the left with no matching alignment. Centering the section itself lines
+   the whole title block up as one unit at every screen size. */
+#team, #contact { text-align: center; }
+
 .team-card {
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px;
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
